@@ -1,0 +1,26 @@
+﻿@*uses shared laout file*@
+@{ 
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Authentication with Identity</h2>
+<hr />
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Hello @User.Identity.Name!</p>
+
+    //adds logoff 
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+        <input type="submit" class="btn btn-default" value="Log out" />
+    }
+}
+else
+{
+    <p> @Html.ActionLink("Register", "Register") </p >
+    <p> @Html.ActionLink("Log in", "Login") </p>
+}
+
+@*We added an if/else statement to display a greeting to the user if they are logged in, and display links to register or log in if no one is logged in.*@
+
+@*we need to add @using System.Security.Claims in order to access the User.Identity properties IsAuthenticated and Name.*@

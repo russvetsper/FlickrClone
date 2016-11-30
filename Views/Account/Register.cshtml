@@ -1,0 +1,30 @@
+﻿@*this page will include a form asking the user to enter an email address, password, and a confirmation password.*@
+
+@{ 
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using FlickrClone.ViewModels
+
+@model RegisterViewModel
+
+<h2>Register new user</h2>
+<hr />
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+
+{
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email)
+
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password)
+
+    @Html.LabelFor(m => m.ConfirmPassword)
+    @Html.PasswordFor(m => m.ConfirmPassword)
+
+    <input type="submit" value="Register" />
+
+}
+
+@*next we add actions in the controller. There will be a GET and a POST action. The GET action will simply return the Register view, and the POST action will take the information submitted from the form to create a new user.*@
